@@ -10,13 +10,13 @@ para determinar cómo mostrar los archivos que viven en la web.
 Implemente un programa que solicite al usuario el nombre de un archivo 
 y luego genere el tipo de archivo MIME correspondiente. Si el nombre del 
 archivo termina en cualquiera de estos sufijos (sin importar el uso de mayúsculas
- y minúsculas) :
+ y minúsculas) :l
 - .gif
 - .jpg
 - .jpeg
 - .png
 - .pdf
-- .txt
+- .tx
 - .zip
 Si el nombre del archivo termina con algún otro sufijo que no se encuentra en la 
 lista o no tiene ningún sufijo, en su lugar su programa deberá 
@@ -25,3 +25,22 @@ devolver application/octet-stream.
 Ejemplos:
 Nombre Archivo: happy.jpg Salida Esperada: image/jpeg
 Nombre Archivo: document.pdf Salida Esperada: application/pdf """
+
+import os.path
+sufijos = [".gif" , ".jpg", ".jpeg", ".png", ".pdf", ".txt", ".zip"]
+nombre_archivo, extension = os.path.splitext(input("\nIndique el nombre del archivo: "))
+print(f"\nLa extension es : {extension}")
+if extension == sufijos[0]:
+    print(f"\nPara {extension} , le corresponde: image/gif")
+elif extension == sufijos[1] or extension == sufijos[2]:
+    print(f"\nPara {extension} , le corresponde: image/jpeg")
+elif extension == sufijos[3]:
+    print(f"\nPara {extension} , le corresponde: image/png")
+elif extension == sufijos[4]:
+    print(f"\nPara {extension} , le corresponde: application/pdf")
+elif extension == sufijos[5]:
+    print(f"\nPara {extension} , le corresponde: text/plain")
+elif extension == sufijos[6]:
+    print(f"\nPara {extension} , le corresponde: application/zip")
+else:
+    print("\n application/octet-stream")
